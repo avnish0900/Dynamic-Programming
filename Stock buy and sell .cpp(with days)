@@ -1,0 +1,28 @@
+class Solution{
+public:
+    vector<vector<int> > stockBuySell(vector<int> prices,  int n){
+        int buy = 0, sell = 0, profit=0;
+        vector<vector<int>> ans;
+        
+        for(int i=1;i<prices.size();i++){
+            if(prices[i]>prices[i-1]){ sell++;}
+            else{
+                if(prices[sell]-prices[buy] >=1 ){
+                    vector<int>tt;
+                    tt.push_back(buy);
+                    tt.push_back(sell);
+                    ans.push_back(tt);
+                }
+                
+                profit+=prices[sell]-prices[buy];buy=sell=i;
+            }
+        }
+        vector<int> tt;
+        if(prices[sell]-prices[buy] >=1 ){
+          vector<int>tt;
+          tt.push_back(buy);
+          tt.push_back(sell);
+          ans.push_back(tt);
+        }
+        return ans;
+    }
